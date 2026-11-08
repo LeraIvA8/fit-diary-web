@@ -1,0 +1,11 @@
+# Библиотеки (ставятся командами npm install / npm run setup)
+node_modules/
+.venv/
+__pycache__/
+
+# Секреты и локальные настройки
+.env
+
+# Служебные файлы мобильного приложения (подробнее — mobile/.gitignore)
+.expo/
+.metro-cache/

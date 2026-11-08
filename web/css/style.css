@@ -1,0 +1,553 @@
+/* Стили всего сайта. Цвета взяты из макетов. */
+
+:root {
+  --background: #F3EEE4; /* кремовый фон */
+  --surface: #FFFFFF;    /* карточки */
+  --muted: #EDE5D6;      /* плашки, теги */
+  --input: #F2EADB;      /* поля внутри карточек */
+  --primary: #123F30;    /* тёмно-зелёный */
+  --accent: #B48A57;     /* золотой */
+  --text: #14261F;
+  --textMuted: #8A8377;
+  --textFaint: #C8BEAD;
+  --border: #E4DACA;
+  --sage: #D9E2D6;
+  --danger: #A9473A;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Inter", system-ui, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--sans);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+/* ───── Текст ───── */
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 34px;
+  color: var(--text);
+}
+
+.title.big {
+  font-size: 44px;
+  line-height: 1.08;
+}
+
+.title.small {
+  font-size: 26px;
+}
+
+.muted {
+  color: var(--textMuted);
+}
+
+.label {
+  display: block;
+  margin: 0 0 8px 2px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--textMuted);
+}
+
+.link {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.error {
+  display: block;
+  margin: 6px 0 0 4px;
+  font-size: 14px;
+  color: var(--danger);
+}
+
+/* ───── Каркас ───── */
+
+.page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 20px 120px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 32px 0 16px;
+}
+
+/* Карточка упражнения: «Упражнение 01» и «Удалить» не разрываются; если не помещаются — «Удалить» уходит на строку ниже */
+.exercise .section {
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.exercise .number,
+.exercise .remove {
+  white-space: nowrap;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Нижнее меню, как в макете */
+.tabbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 12px 8px 16px;
+  background: rgba(255, 255, 255, 0.94);
+  border-top: 1px solid var(--border);
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--textFaint);
+}
+
+.tab.active {
+  color: var(--text);
+}
+
+/* ───── Карточки ───── */
+
+.card {
+  background: var(--surface);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 14px 40px -18px rgba(91, 74, 46, 0.28);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+}
+
+.date-badge {
+  flex: none;
+  width: 74px;
+  height: 74px;
+  border-radius: 18px;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-badge.done {
+  background: var(--muted);
+  color: var(--text);
+}
+
+.date-badge b {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 26px;
+}
+
+.date-badge small {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.row-title {
+  margin: 0 0 4px;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 28px;
+}
+
+.round {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.round.dark {
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ───── Кнопки и поля ───── */
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 64px;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 12px 24px -10px rgba(18, 63, 48, 0.55);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+}
+
+.btn.outline {
+  height: 58px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1.5px solid var(--primary);
+  box-shadow: none;
+}
+
+.btn.gold {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  box-shadow: none;
+}
+
+.btn.text {
+  height: 48px;
+  background: transparent;
+  color: var(--danger);
+  box-shadow: none;
+  font-size: 15px;
+}
+
+.input {
+  width: 100%;
+  height: 64px;
+  padding: 0 24px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 18px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--accent);
+}
+
+.input.soft {
+  height: 56px;
+  background: var(--input);
+  font-size: 17px;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 7px;
+  margin-bottom: 40px;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.switch button {
+  height: 50px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.switch button.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ───── Вход ───── */
+
+/* Форма входа — ровно посередине экрана: и по горизонтали, и по вертикали */
+.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;     /* по вертикали */
+  justify-content: center; /* по горизонтали */
+}
+
+.login .page {
+  width: 100%;
+  max-width: 520px;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+/* ───── Календарь ───── */
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 8px;
+  text-align: center;
+}
+
+.weekday {
+  padding-bottom: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--textMuted);
+}
+
+.day {
+  position: relative;
+  justify-self: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 48px;
+}
+
+.day.other {
+  color: var(--textFaint);
+}
+
+.day.today {
+  background: var(--muted);
+  font-weight: 700;
+}
+
+.day.has {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+}
+
+.day.today.has {
+  background: var(--muted);
+  color: var(--text);
+}
+
+/* Выбранный день: золотая обводка */
+.day.selected {
+  box-shadow: inset 0 0 0 2.5px var(--accent);
+}
+
+.day:hover {
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.day.selected:hover {
+  box-shadow: inset 0 0 0 2.5px var(--accent);
+}
+
+/* Маленький календарь в конструкторе */
+.calendar.mini {
+  row-gap: 4px;
+}
+
+.calendar.mini .weekday {
+  padding-bottom: 6px;
+  font-size: 11px;
+}
+
+.calendar.mini .day {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 15px;
+}
+
+.calendar.mini .day.has::after {
+  bottom: 4px;
+}
+
+.month-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.month-nav .title {
+  font-size: 22px;
+}
+
+.month-nav .round {
+  width: 38px;
+  height: 38px;
+}
+
+/* Тренировка в списке дня: название и кнопки «Открыть», «Изменить» */
+.day-workout {
+  flex-wrap: wrap;
+}
+
+.day-workout .actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn.small {
+  width: auto;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.day.has::after {
+  content: "";
+  position: absolute;
+  bottom: 7px;
+  left: calc(50% - 2.5px);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ───── Профиль ───── */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.stat {
+  padding: 22px 8px 18px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+}
+
+.stat b {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 32px;
+}
+
+.stat span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--textMuted);
+}
+
+.menu {
+  padding: 0;
+  overflow: hidden;
+}
+
+.menu .row {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  text-align: left;
+}
+
+textarea,
+select {
+  font: inherit;
+}
+
+.hidden {
+  display: none !important;
+}

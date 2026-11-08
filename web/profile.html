@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Профиль — Дневник тренировок</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/desktop.css" />
+  </head>
+  <body>
+    <!-- Верхнее меню сайта (на телефоне вместо него нижнее меню) -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="/" class="brand">Дневник тренировок</a>
+        <nav class="nav">
+          <a href="/">Главная</a>
+          <a href="/create.html">Создать</a>
+          <a href="/profile.html" class="active">Профиль</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Окно «Профиль». Логика — js/profile.js, бэкенд — backend/routes/profile.py -->
+    <main class="page">
+      <header class="head">
+        <div>
+          <p class="eyebrow">Аккаунт</p>
+          <h1 class="title">Профиль</h1>
+        </div>
+      </header>
+
+      <div class="layout aside-left">
+        <!-- Слева: карточка пользователя -->
+        <section class="card" style="text-align: center; padding: 40px 24px">
+          <span class="avatar" id="avatar" style="width: 128px; height: 128px; font-size: 56px"></span>
+          <h2 class="title" id="name" style="margin-top: 24px; font-size: 34px"></h2>
+          <p class="muted" id="email" style="margin-bottom: 0"></p>
+        </section>
+
+        <!-- Справа: статистика и меню -->
+        <section>
+          <div class="stats">
+            <div class="stat"><b id="workouts">—</b><span>Тренировки</span></div>
+            <div class="stat"><b id="hours">—</b><span>Часов</span></div>
+            <div class="stat"><b id="weeks">—</b><span>Недель</span></div>
+          </div>
+
+          <nav class="card menu">
+            <button class="row" id="logout">
+              <p class="row-title" style="color: var(--danger); margin: 0">Выйти</p>
+            </button>
+          </nav>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/js/profile.js"></script>
+  </body>
+</html>

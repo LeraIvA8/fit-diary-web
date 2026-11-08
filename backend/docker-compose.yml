@@ -1,0 +1,8 @@
+# Redis для бэкенда. Запуск: npm run redis (нужен запущенный Docker Desktop)
+services:
+  redis:
+    image: redis:7
+    container_name: fit-diary-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped

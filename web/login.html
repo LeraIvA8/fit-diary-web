@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Вход — Дневник тренировок</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/desktop.css" />
+  </head>
+  <body>
+    <!-- Окно «Вход / Регистрация». Логика — js/login.js, бэкенд — backend/routes/login.py -->
+    <main class="login">
+      <div class="page">
+        <h1 class="title big" id="heading" style="margin-bottom: 32px">Войдите в систему</h1>
+
+        <div class="switch">
+          <button id="tab-login" class="active">Вход</button>
+          <button id="tab-register">Регистрация</button>
+        </div>
+
+        <form id="form" class="stack" style="gap: 20px" novalidate>
+          <label id="name-field" class="hidden">
+            <span class="label">Имя</span>
+            <input class="input" name="name" />
+            <span class="error" data-error="name"></span>
+          </label>
+          <label>
+            <span class="label">Логин</span>
+            <input class="input" name="email" type="email" placeholder="ivanova@mail.ru" />
+            <span class="error" data-error="email"></span>
+          </label>
+          <label>
+            <span class="label">Пароль</span>
+            <input class="input" name="password" type="password" placeholder="••••••••" />
+            <span class="error" data-error="password"></span>
+          </label>
+          <span class="error" data-error="form"></span>
+          <button class="btn" type="submit" id="submit">Войти</button>
+          <button class="btn gold" type="button" id="to-register">Создать аккаунт</button>
+        </form>
+      </div>
+    </main>
+    <script type="module" src="/js/login.js"></script>
+  </body>
+</html>

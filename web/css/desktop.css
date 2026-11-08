@@ -1,0 +1,224 @@
+/* Вёрстка сайта для компьютера.
+   Подключается после style.css. На широком экране — верхнее меню и страница в несколько колонок,
+   на узком (телефон) — всё как в мобильных макетах. */
+
+/* ───── Верхнее меню ───── */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(243, 238, 228, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.nav {
+  display: flex;
+  gap: 6px;
+}
+
+.nav a {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--textMuted);
+}
+
+.nav a:hover {
+  color: var(--text);
+  background: var(--muted);
+}
+
+.nav a.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ───── Колонки ───── */
+
+.layout {
+  display: grid;
+  gap: 32px;
+  align-items: start;
+}
+
+.cards {
+  display: grid;
+  gap: 24px;
+}
+
+.cards > p {
+  grid-column: 1 / -1;
+}
+
+.sticky {
+  position: sticky;
+  top: 108px;
+}
+
+.row:hover {
+  border-color: var(--accent);
+}
+
+/* ───── Компьютер: от 900px ───── */
+
+@media (min-width: 900px) {
+  .tabbar {
+    display: none; /* нижнее мобильное меню не нужно — есть верхнее */
+  }
+
+  .page {
+    max-width: 1200px;
+    padding: 48px 40px 80px;
+  }
+
+  .page.narrow {
+    max-width: 880px;
+  }
+
+  .head {
+    margin-bottom: 32px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .title.big {
+    font-size: 52px;
+  }
+
+  /* На компьютере кнопки и поля чуть компактнее, чем на телефоне */
+  .btn {
+    height: 54px;
+    font-size: 16px;
+    border-radius: 16px;
+  }
+
+  .btn.outline {
+    height: 54px;
+  }
+
+  .input {
+    height: 54px;
+    font-size: 16px;
+    border-radius: 16px;
+    padding: 0 20px;
+  }
+
+  .input.soft {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  /* Главная: календарь слева, ближайшие справа */
+  .layout.home {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  }
+
+  .layout.home .section:first-child {
+    margin-top: 0;
+  }
+
+  .calendar:not(.mini) .day {
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+  }
+
+  .btn.small {
+    height: 40px;
+  }
+
+  /* Боковая колонка справа или слева */
+  .layout.aside-right {
+    grid-template-columns: minmax(0, 1fr) 360px;
+  }
+
+  .layout.aside-left {
+    grid-template-columns: 360px minmax(0, 1fr);
+  }
+
+  .layout.two {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Сетки карточек */
+  .cards.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stats {
+    margin: 0 0 24px;
+  }
+
+  /* Вход: форма по центру */
+  .login .page {
+    max-width: 520px;
+    padding: 64px 40px;
+  }
+}
+
+/* ───── Телефон: до 900px ───── */
+
+@media (max-width: 899px) {
+  .nav {
+    display: none; /* на телефоне — нижнее меню из style.css */
+  }
+
+  .topbar-inner {
+    padding: 0 20px;
+    height: 64px;
+  }
+
+  .layout,
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .layout.home .section {
+    margin-top: 32px;
+  }
+
+  .sticky {
+    position: static;
+  }
+}
+
+/* Узкий телефон: календарь помещается в экран */
+@media (max-width: 440px) {
+  .day {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+  }
+
+  .layout.home .card {
+    padding: 20px 14px;
+  }
+}

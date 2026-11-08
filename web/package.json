@@ -1,0 +1,9 @@
+{
+  "name": "fit-diary-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Дневник тренировок — сайт (HTML, CSS, JavaScript). Данные берёт у бэкенда (папка backend)",
+  "scripts": {
+    "dev": "python server.py"
+  }
+}

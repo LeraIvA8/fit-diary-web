@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Новая тренировка — Дневник тренировок</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/desktop.css" />
+  </head>
+  <body>
+    <!-- Верхнее меню сайта (на телефоне вместо него нижнее меню) -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="/" class="brand">Дневник тренировок</a>
+        <nav class="nav">
+          <a href="/">Главная</a>
+          <a href="/create.html" class="active">Создать</a>
+          <a href="/profile.html">Профиль</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Окно «Конструктор». Логика — js/create.js, бэкенд — backend/routes/create.py -->
+    <main class="page">
+      <header class="head">
+        <div>
+          <p class="eyebrow">Конструктор</p>
+          <h1 class="title" id="heading">Новая тренировка</h1>
+        </div>
+      </header>
+
+      <div class="layout aside-right">
+        <!-- Слева: упражнения -->
+        <section>
+          <div class="section" style="margin-top: 0">
+            <h2 class="title small">Упражнения</h2>
+            <button class="link" id="clear">Очистить</button>
+          </div>
+          <!-- Сюда js/create.js добавляет карточки упражнений -->
+          <div class="cards two" id="exercises"></div>
+          <button class="btn gold" id="add" style="margin-top: 24px">+ Добавить упражнение</button>
+          <span class="error" data-error="exercises"></span>
+        </section>
+
+        <!-- Справа: название, день и кнопка сохранения -->
+        <aside class="card stack sticky" style="gap: 20px">
+          <label>
+            <span class="label">Название тренировки</span>
+            <input class="input" id="title" placeholder="Например: Силовая — верх тела" />
+            <span class="error" data-error="title"></span>
+          </label>
+          <div>
+            <span class="label">День</span>
+            <!-- Маленький календарь: нажатие на день ставит тренировку на него. Зелёные дни — уже есть тренировки -->
+            <div class="month-nav">
+              <h2 class="title" id="month"></h2>
+              <div style="display: flex; gap: 8px">
+                <button type="button" class="round" id="prev">&lsaquo;</button>
+                <button type="button" class="round" id="next">&rsaquo;</button>
+              </div>
+            </div>
+            <div class="calendar mini" id="calendar"></div>
+            <p class="muted" style="margin: 14px 0 0">Выбран день: <b id="picked"></b></p>
+            <span class="error" data-error="date"></span>
+          </div>
+          <span class="error" data-error="form"></span>
+          <button class="btn" id="save">Сохранить тренировку</button>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Шаблон карточки упражнения: js/create.js копирует его для каждого упражнения -->
+    <template id="exercise-template">
+      <section class="card stack exercise">
+        <div class="section" style="margin: 0">
+          <p class="eyebrow number"></p>
+          <button class="link remove" title="Удалить">Удалить</button>
+        </div>
+        <label>
+          <input class="input soft name" placeholder="Название упражнения" />
+          <span class="error error-name"></span>
+        </label>
+        <div class="grid2">
+          <label>
+            <span class="label">Подходы</span>
+            <input class="input soft sets" inputmode="numeric" value="4" />
+            <span class="error error-sets"></span>
+          </label>
+          <label>
+            <span class="label">Повторения</span>
+            <input class="input soft reps" inputmode="numeric" value="10" />
+            <span class="error error-reps"></span>
+          </label>
+        </div>
+        <input class="input soft note" placeholder="Заметка: техника, вес, самочувствие" />
+      </section>
+    </template>
+
+    <script type="module" src="/js/create.js"></script>
+  </body>
+</html>
