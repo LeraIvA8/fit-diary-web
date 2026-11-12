@@ -14,7 +14,8 @@ routes/                 адреса API, по файлу на окно: login.p
 database/schema.sql     таблицы: users, workouts, workout_exercises
 database/create_tables.py   создаёт таблицы (npm run db:create)
 database/seed.py        демо-аккаунт с тренировками (npm run db:seed)
-docker-compose.yml      Redis в Docker (npm run redis)
+Dockerfile              как собрать образ бэкенда для Docker (Python 3.13 + код)
+docker-compose.yml      Redis, бэкенд и сайт в Docker (npm run docker) или только Redis (npm run redis)
 requirements.txt        библиотеки Python: Flask, psycopg, argon2, python-dotenv, redis
 .env                    адреса PostgreSQL и Redis, порт, разрешённые адреса сайта (создаётся из .env.example)
 ```
@@ -44,3 +45,13 @@ requirements.txt        библиотеки Python: Flask, psycopg, argon2, pyt
    npm run dev
    ```
    API: http://localhost:3000. Демо-аккаунт: `ivanova@mail.ru` / `Fitness2026`.
+
+## Запуск в Docker
+
+```
+npm run docker
+```
+Собирает образы по `Dockerfile` (бэкенд) и `../web/Dockerfile` (сайт) и запускает три контейнера: Redis, бэкенд, сайт.
+Внутри контейнера `localhost` — это сам контейнер, поэтому в `docker-compose.yml` адреса заменены:
+PostgreSQL — `host.docker.internal` (компьютер), Redis — `redis` (имя сервиса).
+Остановить: `npm run docker:stop`.

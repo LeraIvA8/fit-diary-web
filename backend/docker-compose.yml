@@ -1,4 +1,7 @@
-# Redis для бэкенда. Запуск: npm run redis (нужен запущенный Docker Desktop)
+# Весь проект в Docker: Redis + бэкенд + сайт.
+#   npm run docker  — собрать и запустить всё (нужен запущенный Docker Desktop)
+#   npm run redis   — запустить только Redis (если бэкенд запускаете без Docker: npm run dev)
+# PostgreSQL работает не в Docker, а прямо на компьютере — бэкенд подключается к нему через host.docker.internal
 services:
   redis:
     image: redis:7
@@ -6,3 +9,40 @@ services:
     ports:
       - "6379:6379"
     restart: unless-stopped
+    # Проверка «Redis жив»: бэкенд стартует только после неё
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build: .                      # Dockerfile в этой папке
+    container_name: fit-diary-backend
+    env_file:
+      - .env                      # настройки из .env (CORS_ORIGINS и т. д.)
+    environment:
+      # Внутри контейнера localhost — это сам контейнер, поэтому адреса другие:
+      # компьютер (там PostgreSQL) — host.docker.internal, Redis — имя сервиса redis
+      DATABASE_URL: "postgres://fit:fit@host.docker.internal:5432/fitdiary_web"
+      REDIS_URL: "redis://redis:6379/0"
+    ports:
+      - "3000:3000"
+    depends_on:
+      redis:
+        condition: service_healthy
+    # Проверка «бэкенд отвечает»: сайт стартует только после неё
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:3000/', timeout=3).close()"]
+      interval: 5s
+      timeout: 4s
+      retries: 10
+
+  web:
+    build: ../web                 # Dockerfile в папке web
+    container_name: fit-diary-web
+    ports:
+      - "8080:80"                 # сайт: http://localhost:8080
+    depends_on:
+      backend:
+        condition: service_healthy

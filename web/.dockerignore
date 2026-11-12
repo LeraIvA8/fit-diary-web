@@ -1,0 +1,5 @@
+# Что не попадает в образ Docker
+server.py
+package.json
+README.md
+Dockerfile

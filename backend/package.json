@@ -5,7 +5,9 @@
   "description": "Дневник тренировок — бэкенд (Python + Flask, PostgreSQL, Redis). Общий для сайта (web) и мобильного приложения (mobile)",
   "scripts": {
     "setup": "python -m venv .venv && .venv\\Scripts\\python -m pip install -r requirements.txt",
-    "redis": "docker compose up -d",
+    "redis": "docker compose up -d redis",
+    "docker": "docker compose up -d --build",
+    "docker:stop": "docker compose down",
     "dev": ".venv\\Scripts\\python app.py",
     "db:create": ".venv\\Scripts\\python -m database.create_tables",
     "db:seed": ".venv\\Scripts\\python -m database.seed"

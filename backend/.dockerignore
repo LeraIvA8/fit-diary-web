@@ -1,0 +1,7 @@
+# Что не попадает в образ Docker: секреты, окружение Python, кэш, служебные файлы
+.env
+.venv
+__pycache__
+node_modules
+package.json
+README.md
